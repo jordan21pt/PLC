@@ -1,0 +1,18 @@
+
+Inicio
+
+int a;
+int N;
+
+a = 0;
+b = 0;
+N = 2;
+
+Enquanto (a < 2) Faz
+    Enquanto (b < 2) Faz
+        b = b + 1;
+    ;
+    a = a + 1;
+;
+
+Fim

@@ -1,0 +1,9 @@
+Inicio
+
+int a;
+
+a = 20;
+
+Ler ;
+
+Fim

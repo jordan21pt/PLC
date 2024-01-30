@@ -1,0 +1,27 @@
+
+Inicio
+
+int a;
+int N;
+int b;
+
+a = 0;
+b = 0;
+N = 2;
+
+Enquanto (a < 2) Faz
+    Enquanto (b < 3) Faz
+        b = b + 1;
+    ;
+    a = a + 1;
+;
+
+Escrever("a: ");
+Escrever(a+b);
+
+Escrever(", ");
+
+Escrever("b: ");
+Escrever(b);
+
+Fim

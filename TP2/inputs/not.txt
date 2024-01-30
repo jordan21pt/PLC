@@ -1,0 +1,14 @@
+Inicio
+
+    int a;
+    int b;
+
+    a = 0;
+    b = 1;
+
+    Se (a E b) Faz
+        Escrever (a);
+    Senao
+        Escrever (b);
+    ;
+Fim

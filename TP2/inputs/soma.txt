@@ -1,0 +1,15 @@
+Inicio
+
+    int a;
+    int b;
+    int c;
+    int d;
+
+    a = 20;
+    b = 30;
+    c = 40;
+    d = a + b + c;
+    Escrever ("d: ");
+    Escrever (d);
+
+Fim

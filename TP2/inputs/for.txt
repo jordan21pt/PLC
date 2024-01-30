@@ -1,0 +1,21 @@
+Inicio
+
+    int i;
+    int r;
+    int j;
+
+    r = 1;
+    Para (i = 0 ; ; i < 4 ; i = i + 1;)
+    Faz 
+        Para (j = i + 1; ; j < 4; j = j + 1;)
+        Faz
+            Se (lados[i] != lados[j])
+            Faz
+                r = 0;
+            ;
+        ;
+    ;
+
+    Escrever (r);
+
+Fim

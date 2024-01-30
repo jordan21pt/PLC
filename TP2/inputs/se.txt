@@ -1,0 +1,15 @@
+Inicio
+
+int a;
+int b;
+
+a = 5;
+b = 10;
+
+Se (a > b) Faz
+    Escrever (" a maior que b ");
+Senao
+    Escrever (" b maior que a ");
+;
+
+Fim

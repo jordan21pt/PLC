@@ -1,0 +1,16 @@
+Inicio
+
+int a;
+int N;
+
+a = 0;
+N = 5;
+
+Enquanto (a < N) Faz
+    a = a + 1;
+;
+
+Escrever("a: ");
+Escrever(a);
+
+Fim

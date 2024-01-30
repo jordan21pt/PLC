@@ -1,0 +1,16 @@
+Inicio
+
+int sum;
+int tam;
+int a[5];
+int i;
+
+Para(i = 0; ; i < tam; i = i + 1;)
+Faz
+    sum = sum + a[i];
+;
+
+Escrever(" A soma do array e ");
+Escrever(sum);
+
+Fim

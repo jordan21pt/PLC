@@ -1,0 +1,2591 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> Programa
+Rule 1     Programa -> Inicio Corpo Fim
+Rule 2     Corpo -> Declaracoes Instrucoes
+Rule 3     Declaracoes -> Declaracoes Declaracao
+Rule 4     Declaracoes -> <empty>
+Rule 5     Declaracao -> Tipo Var PontoVirgula
+Rule 6     Declaracao -> Tipo Var Expressao ParRetoDir PontoVirgula
+Rule 7     Declaracao -> Tipo Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir PontoVirgula
+Rule 8     Instrucoes -> Instrucoes Instrucao
+Rule 9     Instrucoes -> <empty>
+Rule 10    Instrucao -> Atribuicao
+Rule 11    Instrucao -> Leitura
+Rule 12    Instrucao -> Escrita
+Rule 13    Instrucao -> Selecao
+Rule 14    Instrucao -> Repeticao
+Rule 15    Atribuicao -> Var Vale Expressao PontoVirgula
+Rule 16    Atribuicao -> Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+Rule 17    Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+Rule 18    Condicao -> Expressao
+Rule 19    Condicao -> Expressao Igual Expressao
+Rule 20    Condicao -> Expressao Diferente Expressao
+Rule 21    Condicao -> Expressao MenorIgual Expressao
+Rule 22    Condicao -> Expressao MaiorIgual Expressao
+Rule 23    Condicao -> Expressao Menor Expressao
+Rule 24    Condicao -> Expressao Maior Expressao
+Rule 25    Expressao -> Termo
+Rule 26    Expressao -> Expressao Soma Termo
+Rule 27    Expressao -> Expressao Subtracao Termo
+Rule 28    Expressao -> Expressao OU Termo
+Rule 29    Termo -> Fator
+Rule 30    Termo -> Termo Multiplicacao Fator
+Rule 31    Termo -> Termo Divisao Fator
+Rule 32    Termo -> Termo E Fator
+Rule 33    Fator -> Frase
+Rule 34    Fator -> Var ParRetoEsq Expressao ParRetoDir
+Rule 35    Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+Rule 36    Fator -> ParCurvoEsq Condicao ParCurvoDir
+Rule 37    Fator -> Negar Fator
+Rule 38    Leitura -> Ler PontoVirgula
+Rule 39    Escrita -> Escrever ParCurvoEsq Expressao ParCurvoDir PontoVirgula
+Rule 40    Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula
+Rule 41    Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula
+Rule 42    Repeticao -> Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula
+Rule 43    Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula
+Rule 44    Frase -> String
+Rule 45    Frase -> Lista_Palavras
+Rule 46    Lista_Palavras -> Palavra
+Rule 47    Lista_Palavras -> Lista_Palavras Palavra
+Rule 48    Palavra -> Var
+Rule 49    Palavra -> Num
+
+Terminals, with rules where they appear
+
+Diferente            : 20
+Divisao              : 31
+E                    : 32
+Enquanto             : 42
+Escrever             : 39
+Faz                  : 40 41 42 43
+Fim                  : 1
+Igual                : 19
+Inicio               : 1
+Ler                  : 38
+Maior                : 24
+MaiorIgual           : 22
+Menor                : 23
+MenorIgual           : 21
+Multiplicacao        : 30
+Negar                : 37
+Num                  : 49
+OU                   : 28
+ParCurvoDir          : 36 39 40 41 42 43
+ParCurvoEsq          : 36 39 40 41 42 43
+ParRetoDir           : 6 7 7 16 17 17 34 35 35
+ParRetoEsq           : 7 7 16 17 17 34 35 35
+Para                 : 43
+PontoVirgula         : 5 6 7 15 16 17 38 39 40 41 42 43 43 43
+Se                   : 40 41
+Senao                : 41
+Soma                 : 26
+String               : 44
+Subtracao            : 27
+Tipo                 : 5 6 7
+Vale                 : 15 16 17
+Var                  : 5 6 7 15 16 17 34 35 48
+error                : 
+
+Nonterminals, with rules where they appear
+
+Atribuicao           : 10 43 43
+Condicao             : 36 40 41 42 43
+Corpo                : 1
+Declaracao           : 3
+Declaracoes          : 2 3
+Escrita              : 12
+Expressao            : 6 7 7 15 16 16 17 17 17 18 19 19 20 20 21 21 22 22 23 23 24 24 26 27 28 34 35 35 39
+Fator                : 29 30 31 32 37
+Frase                : 33
+Instrucao            : 8
+Instrucoes           : 2 8 40 41 41 42 43
+Leitura              : 11
+Lista_Palavras       : 45 47
+Palavra              : 46 47
+Programa             : 0
+Repeticao            : 14
+Selecao              : 13
+Termo                : 25 26 27 28 30 31 32
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Programa
+    (1) Programa -> . Inicio Corpo Fim
+
+    Inicio          shift and go to state 2
+
+    Programa                       shift and go to state 1
+
+state 1
+
+    (0) S' -> Programa .
+
+
+
+state 2
+
+    (1) Programa -> Inicio . Corpo Fim
+    (2) Corpo -> . Declaracoes Instrucoes
+    (3) Declaracoes -> . Declaracoes Declaracao
+    (4) Declaracoes -> .
+
+    Tipo            reduce using rule 4 (Declaracoes -> .)
+    Var             reduce using rule 4 (Declaracoes -> .)
+    Ler             reduce using rule 4 (Declaracoes -> .)
+    Escrever        reduce using rule 4 (Declaracoes -> .)
+    Se              reduce using rule 4 (Declaracoes -> .)
+    Enquanto        reduce using rule 4 (Declaracoes -> .)
+    Para            reduce using rule 4 (Declaracoes -> .)
+    Fim             reduce using rule 4 (Declaracoes -> .)
+
+    Corpo                          shift and go to state 3
+    Declaracoes                    shift and go to state 4
+
+state 3
+
+    (1) Programa -> Inicio Corpo . Fim
+
+    Fim             shift and go to state 5
+
+
+state 4
+
+    (2) Corpo -> Declaracoes . Instrucoes
+    (3) Declaracoes -> Declaracoes . Declaracao
+    (8) Instrucoes -> . Instrucoes Instrucao
+    (9) Instrucoes -> .
+    (5) Declaracao -> . Tipo Var PontoVirgula
+    (6) Declaracao -> . Tipo Var Expressao ParRetoDir PontoVirgula
+    (7) Declaracao -> . Tipo Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir PontoVirgula
+
+    Var             reduce using rule 9 (Instrucoes -> .)
+    Ler             reduce using rule 9 (Instrucoes -> .)
+    Escrever        reduce using rule 9 (Instrucoes -> .)
+    Se              reduce using rule 9 (Instrucoes -> .)
+    Enquanto        reduce using rule 9 (Instrucoes -> .)
+    Para            reduce using rule 9 (Instrucoes -> .)
+    Fim             reduce using rule 9 (Instrucoes -> .)
+    Tipo            shift and go to state 8
+
+    Instrucoes                     shift and go to state 6
+    Declaracao                     shift and go to state 7
+
+state 5
+
+    (1) Programa -> Inicio Corpo Fim .
+
+    $end            reduce using rule 1 (Programa -> Inicio Corpo Fim .)
+
+
+state 6
+
+    (2) Corpo -> Declaracoes Instrucoes .
+    (8) Instrucoes -> Instrucoes . Instrucao
+    (10) Instrucao -> . Atribuicao
+    (11) Instrucao -> . Leitura
+    (12) Instrucao -> . Escrita
+    (13) Instrucao -> . Selecao
+    (14) Instrucao -> . Repeticao
+    (15) Atribuicao -> . Var Vale Expressao PontoVirgula
+    (16) Atribuicao -> . Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+    (17) Atribuicao -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+    (38) Leitura -> . Ler PontoVirgula
+    (39) Escrita -> . Escrever ParCurvoEsq Expressao ParCurvoDir PontoVirgula
+    (40) Selecao -> . Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula
+    (41) Selecao -> . Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula
+    (42) Repeticao -> . Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula
+    (43) Repeticao -> . Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula
+
+    Fim             reduce using rule 2 (Corpo -> Declaracoes Instrucoes .)
+    Var             shift and go to state 15
+    Ler             shift and go to state 16
+    Escrever        shift and go to state 17
+    Se              shift and go to state 18
+    Enquanto        shift and go to state 19
+    Para            shift and go to state 20
+
+    Instrucao                      shift and go to state 9
+    Atribuicao                     shift and go to state 10
+    Leitura                        shift and go to state 11
+    Escrita                        shift and go to state 12
+    Selecao                        shift and go to state 13
+    Repeticao                      shift and go to state 14
+
+state 7
+
+    (3) Declaracoes -> Declaracoes Declaracao .
+
+    Tipo            reduce using rule 3 (Declaracoes -> Declaracoes Declaracao .)
+    Var             reduce using rule 3 (Declaracoes -> Declaracoes Declaracao .)
+    Ler             reduce using rule 3 (Declaracoes -> Declaracoes Declaracao .)
+    Escrever        reduce using rule 3 (Declaracoes -> Declaracoes Declaracao .)
+    Se              reduce using rule 3 (Declaracoes -> Declaracoes Declaracao .)
+    Enquanto        reduce using rule 3 (Declaracoes -> Declaracoes Declaracao .)
+    Para            reduce using rule 3 (Declaracoes -> Declaracoes Declaracao .)
+    Fim             reduce using rule 3 (Declaracoes -> Declaracoes Declaracao .)
+
+
+state 8
+
+    (5) Declaracao -> Tipo . Var PontoVirgula
+    (6) Declaracao -> Tipo . Var Expressao ParRetoDir PontoVirgula
+    (7) Declaracao -> Tipo . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir PontoVirgula
+
+    Var             shift and go to state 21
+
+
+state 9
+
+    (8) Instrucoes -> Instrucoes Instrucao .
+
+    Var             reduce using rule 8 (Instrucoes -> Instrucoes Instrucao .)
+    Ler             reduce using rule 8 (Instrucoes -> Instrucoes Instrucao .)
+    Escrever        reduce using rule 8 (Instrucoes -> Instrucoes Instrucao .)
+    Se              reduce using rule 8 (Instrucoes -> Instrucoes Instrucao .)
+    Enquanto        reduce using rule 8 (Instrucoes -> Instrucoes Instrucao .)
+    Para            reduce using rule 8 (Instrucoes -> Instrucoes Instrucao .)
+    Fim             reduce using rule 8 (Instrucoes -> Instrucoes Instrucao .)
+    PontoVirgula    reduce using rule 8 (Instrucoes -> Instrucoes Instrucao .)
+    Senao           reduce using rule 8 (Instrucoes -> Instrucoes Instrucao .)
+
+
+state 10
+
+    (10) Instrucao -> Atribuicao .
+
+    Var             reduce using rule 10 (Instrucao -> Atribuicao .)
+    Ler             reduce using rule 10 (Instrucao -> Atribuicao .)
+    Escrever        reduce using rule 10 (Instrucao -> Atribuicao .)
+    Se              reduce using rule 10 (Instrucao -> Atribuicao .)
+    Enquanto        reduce using rule 10 (Instrucao -> Atribuicao .)
+    Para            reduce using rule 10 (Instrucao -> Atribuicao .)
+    Fim             reduce using rule 10 (Instrucao -> Atribuicao .)
+    PontoVirgula    reduce using rule 10 (Instrucao -> Atribuicao .)
+    Senao           reduce using rule 10 (Instrucao -> Atribuicao .)
+
+
+state 11
+
+    (11) Instrucao -> Leitura .
+
+    Var             reduce using rule 11 (Instrucao -> Leitura .)
+    Ler             reduce using rule 11 (Instrucao -> Leitura .)
+    Escrever        reduce using rule 11 (Instrucao -> Leitura .)
+    Se              reduce using rule 11 (Instrucao -> Leitura .)
+    Enquanto        reduce using rule 11 (Instrucao -> Leitura .)
+    Para            reduce using rule 11 (Instrucao -> Leitura .)
+    Fim             reduce using rule 11 (Instrucao -> Leitura .)
+    PontoVirgula    reduce using rule 11 (Instrucao -> Leitura .)
+    Senao           reduce using rule 11 (Instrucao -> Leitura .)
+
+
+state 12
+
+    (12) Instrucao -> Escrita .
+
+    Var             reduce using rule 12 (Instrucao -> Escrita .)
+    Ler             reduce using rule 12 (Instrucao -> Escrita .)
+    Escrever        reduce using rule 12 (Instrucao -> Escrita .)
+    Se              reduce using rule 12 (Instrucao -> Escrita .)
+    Enquanto        reduce using rule 12 (Instrucao -> Escrita .)
+    Para            reduce using rule 12 (Instrucao -> Escrita .)
+    Fim             reduce using rule 12 (Instrucao -> Escrita .)
+    PontoVirgula    reduce using rule 12 (Instrucao -> Escrita .)
+    Senao           reduce using rule 12 (Instrucao -> Escrita .)
+
+
+state 13
+
+    (13) Instrucao -> Selecao .
+
+    Var             reduce using rule 13 (Instrucao -> Selecao .)
+    Ler             reduce using rule 13 (Instrucao -> Selecao .)
+    Escrever        reduce using rule 13 (Instrucao -> Selecao .)
+    Se              reduce using rule 13 (Instrucao -> Selecao .)
+    Enquanto        reduce using rule 13 (Instrucao -> Selecao .)
+    Para            reduce using rule 13 (Instrucao -> Selecao .)
+    Fim             reduce using rule 13 (Instrucao -> Selecao .)
+    PontoVirgula    reduce using rule 13 (Instrucao -> Selecao .)
+    Senao           reduce using rule 13 (Instrucao -> Selecao .)
+
+
+state 14
+
+    (14) Instrucao -> Repeticao .
+
+    Var             reduce using rule 14 (Instrucao -> Repeticao .)
+    Ler             reduce using rule 14 (Instrucao -> Repeticao .)
+    Escrever        reduce using rule 14 (Instrucao -> Repeticao .)
+    Se              reduce using rule 14 (Instrucao -> Repeticao .)
+    Enquanto        reduce using rule 14 (Instrucao -> Repeticao .)
+    Para            reduce using rule 14 (Instrucao -> Repeticao .)
+    Fim             reduce using rule 14 (Instrucao -> Repeticao .)
+    PontoVirgula    reduce using rule 14 (Instrucao -> Repeticao .)
+    Senao           reduce using rule 14 (Instrucao -> Repeticao .)
+
+
+state 15
+
+    (15) Atribuicao -> Var . Vale Expressao PontoVirgula
+    (16) Atribuicao -> Var . ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+    (17) Atribuicao -> Var . ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+
+    Vale            shift and go to state 22
+    ParRetoEsq      shift and go to state 23
+
+
+state 16
+
+    (38) Leitura -> Ler . PontoVirgula
+
+    PontoVirgula    shift and go to state 24
+
+
+state 17
+
+    (39) Escrita -> Escrever . ParCurvoEsq Expressao ParCurvoDir PontoVirgula
+
+    ParCurvoEsq     shift and go to state 25
+
+
+state 18
+
+    (40) Selecao -> Se . ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula
+    (41) Selecao -> Se . ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula
+
+    ParCurvoEsq     shift and go to state 26
+
+
+state 19
+
+    (42) Repeticao -> Enquanto . ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula
+
+    ParCurvoEsq     shift and go to state 27
+
+
+state 20
+
+    (43) Repeticao -> Para . ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula
+
+    ParCurvoEsq     shift and go to state 28
+
+
+state 21
+
+    (5) Declaracao -> Tipo Var . PontoVirgula
+    (6) Declaracao -> Tipo Var . Expressao ParRetoDir PontoVirgula
+    (7) Declaracao -> Tipo Var . ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir PontoVirgula
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    PontoVirgula    shift and go to state 30
+    ParRetoEsq      shift and go to state 32
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 31
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 22
+
+    (15) Atribuicao -> Var Vale . Expressao PontoVirgula
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 42
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 23
+
+    (16) Atribuicao -> Var ParRetoEsq . Expressao ParRetoDir Vale Expressao PontoVirgula
+    (17) Atribuicao -> Var ParRetoEsq . Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 43
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 24
+
+    (38) Leitura -> Ler PontoVirgula .
+
+    Var             reduce using rule 38 (Leitura -> Ler PontoVirgula .)
+    Ler             reduce using rule 38 (Leitura -> Ler PontoVirgula .)
+    Escrever        reduce using rule 38 (Leitura -> Ler PontoVirgula .)
+    Se              reduce using rule 38 (Leitura -> Ler PontoVirgula .)
+    Enquanto        reduce using rule 38 (Leitura -> Ler PontoVirgula .)
+    Para            reduce using rule 38 (Leitura -> Ler PontoVirgula .)
+    Fim             reduce using rule 38 (Leitura -> Ler PontoVirgula .)
+    PontoVirgula    reduce using rule 38 (Leitura -> Ler PontoVirgula .)
+    Senao           reduce using rule 38 (Leitura -> Ler PontoVirgula .)
+
+
+state 25
+
+    (39) Escrita -> Escrever ParCurvoEsq . Expressao ParCurvoDir PontoVirgula
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 44
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 26
+
+    (40) Selecao -> Se ParCurvoEsq . Condicao ParCurvoDir Faz Instrucoes PontoVirgula
+    (41) Selecao -> Se ParCurvoEsq . Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula
+    (18) Condicao -> . Expressao
+    (19) Condicao -> . Expressao Igual Expressao
+    (20) Condicao -> . Expressao Diferente Expressao
+    (21) Condicao -> . Expressao MenorIgual Expressao
+    (22) Condicao -> . Expressao MaiorIgual Expressao
+    (23) Condicao -> . Expressao Menor Expressao
+    (24) Condicao -> . Expressao Maior Expressao
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Condicao                       shift and go to state 45
+    Expressao                      shift and go to state 46
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 27
+
+    (42) Repeticao -> Enquanto ParCurvoEsq . Condicao ParCurvoDir Faz Instrucoes PontoVirgula
+    (18) Condicao -> . Expressao
+    (19) Condicao -> . Expressao Igual Expressao
+    (20) Condicao -> . Expressao Diferente Expressao
+    (21) Condicao -> . Expressao MenorIgual Expressao
+    (22) Condicao -> . Expressao MaiorIgual Expressao
+    (23) Condicao -> . Expressao Menor Expressao
+    (24) Condicao -> . Expressao Maior Expressao
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Condicao                       shift and go to state 47
+    Expressao                      shift and go to state 46
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 28
+
+    (43) Repeticao -> Para ParCurvoEsq . Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula
+    (15) Atribuicao -> . Var Vale Expressao PontoVirgula
+    (16) Atribuicao -> . Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+    (17) Atribuicao -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+
+    Var             shift and go to state 15
+
+    Atribuicao                     shift and go to state 48
+
+state 29
+
+    (34) Fator -> Var . ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> Var . ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (48) Palavra -> Var .
+
+    ParRetoEsq      shift and go to state 49
+    Var             reduce using rule 48 (Palavra -> Var .)
+    Num             reduce using rule 48 (Palavra -> Var .)
+    Multiplicacao   reduce using rule 48 (Palavra -> Var .)
+    Divisao         reduce using rule 48 (Palavra -> Var .)
+    E               reduce using rule 48 (Palavra -> Var .)
+    ParRetoDir      reduce using rule 48 (Palavra -> Var .)
+    Soma            reduce using rule 48 (Palavra -> Var .)
+    Subtracao       reduce using rule 48 (Palavra -> Var .)
+    OU              reduce using rule 48 (Palavra -> Var .)
+    PontoVirgula    reduce using rule 48 (Palavra -> Var .)
+    ParCurvoDir     reduce using rule 48 (Palavra -> Var .)
+    Igual           reduce using rule 48 (Palavra -> Var .)
+    Diferente       reduce using rule 48 (Palavra -> Var .)
+    MenorIgual      reduce using rule 48 (Palavra -> Var .)
+    MaiorIgual      reduce using rule 48 (Palavra -> Var .)
+    Menor           reduce using rule 48 (Palavra -> Var .)
+    Maior           reduce using rule 48 (Palavra -> Var .)
+
+
+state 30
+
+    (5) Declaracao -> Tipo Var PontoVirgula .
+
+    Tipo            reduce using rule 5 (Declaracao -> Tipo Var PontoVirgula .)
+    Var             reduce using rule 5 (Declaracao -> Tipo Var PontoVirgula .)
+    Ler             reduce using rule 5 (Declaracao -> Tipo Var PontoVirgula .)
+    Escrever        reduce using rule 5 (Declaracao -> Tipo Var PontoVirgula .)
+    Se              reduce using rule 5 (Declaracao -> Tipo Var PontoVirgula .)
+    Enquanto        reduce using rule 5 (Declaracao -> Tipo Var PontoVirgula .)
+    Para            reduce using rule 5 (Declaracao -> Tipo Var PontoVirgula .)
+    Fim             reduce using rule 5 (Declaracao -> Tipo Var PontoVirgula .)
+
+
+state 31
+
+    (6) Declaracao -> Tipo Var Expressao . ParRetoDir PontoVirgula
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    ParRetoDir      shift and go to state 50
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 32
+
+    (7) Declaracao -> Tipo Var ParRetoEsq . Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir PontoVirgula
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 54
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 33
+
+    (25) Expressao -> Termo .
+    (30) Termo -> Termo . Multiplicacao Fator
+    (31) Termo -> Termo . Divisao Fator
+    (32) Termo -> Termo . E Fator
+
+    ParRetoDir      reduce using rule 25 (Expressao -> Termo .)
+    Soma            reduce using rule 25 (Expressao -> Termo .)
+    Subtracao       reduce using rule 25 (Expressao -> Termo .)
+    OU              reduce using rule 25 (Expressao -> Termo .)
+    PontoVirgula    reduce using rule 25 (Expressao -> Termo .)
+    ParCurvoDir     reduce using rule 25 (Expressao -> Termo .)
+    Igual           reduce using rule 25 (Expressao -> Termo .)
+    Diferente       reduce using rule 25 (Expressao -> Termo .)
+    MenorIgual      reduce using rule 25 (Expressao -> Termo .)
+    MaiorIgual      reduce using rule 25 (Expressao -> Termo .)
+    Menor           reduce using rule 25 (Expressao -> Termo .)
+    Maior           reduce using rule 25 (Expressao -> Termo .)
+    Multiplicacao   shift and go to state 55
+    Divisao         shift and go to state 56
+    E               shift and go to state 57
+
+
+state 34
+
+    (29) Termo -> Fator .
+
+    Multiplicacao   reduce using rule 29 (Termo -> Fator .)
+    Divisao         reduce using rule 29 (Termo -> Fator .)
+    E               reduce using rule 29 (Termo -> Fator .)
+    ParRetoDir      reduce using rule 29 (Termo -> Fator .)
+    Soma            reduce using rule 29 (Termo -> Fator .)
+    Subtracao       reduce using rule 29 (Termo -> Fator .)
+    OU              reduce using rule 29 (Termo -> Fator .)
+    PontoVirgula    reduce using rule 29 (Termo -> Fator .)
+    ParCurvoDir     reduce using rule 29 (Termo -> Fator .)
+    Igual           reduce using rule 29 (Termo -> Fator .)
+    Diferente       reduce using rule 29 (Termo -> Fator .)
+    MenorIgual      reduce using rule 29 (Termo -> Fator .)
+    MaiorIgual      reduce using rule 29 (Termo -> Fator .)
+    Menor           reduce using rule 29 (Termo -> Fator .)
+    Maior           reduce using rule 29 (Termo -> Fator .)
+
+
+state 35
+
+    (33) Fator -> Frase .
+
+    Multiplicacao   reduce using rule 33 (Fator -> Frase .)
+    Divisao         reduce using rule 33 (Fator -> Frase .)
+    E               reduce using rule 33 (Fator -> Frase .)
+    ParRetoDir      reduce using rule 33 (Fator -> Frase .)
+    Soma            reduce using rule 33 (Fator -> Frase .)
+    Subtracao       reduce using rule 33 (Fator -> Frase .)
+    OU              reduce using rule 33 (Fator -> Frase .)
+    PontoVirgula    reduce using rule 33 (Fator -> Frase .)
+    ParCurvoDir     reduce using rule 33 (Fator -> Frase .)
+    Igual           reduce using rule 33 (Fator -> Frase .)
+    Diferente       reduce using rule 33 (Fator -> Frase .)
+    MenorIgual      reduce using rule 33 (Fator -> Frase .)
+    MaiorIgual      reduce using rule 33 (Fator -> Frase .)
+    Menor           reduce using rule 33 (Fator -> Frase .)
+    Maior           reduce using rule 33 (Fator -> Frase .)
+
+
+state 36
+
+    (36) Fator -> ParCurvoEsq . Condicao ParCurvoDir
+    (18) Condicao -> . Expressao
+    (19) Condicao -> . Expressao Igual Expressao
+    (20) Condicao -> . Expressao Diferente Expressao
+    (21) Condicao -> . Expressao MenorIgual Expressao
+    (22) Condicao -> . Expressao MaiorIgual Expressao
+    (23) Condicao -> . Expressao Menor Expressao
+    (24) Condicao -> . Expressao Maior Expressao
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Condicao                       shift and go to state 58
+    Expressao                      shift and go to state 46
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 37
+
+    (37) Fator -> Negar . Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Fator                          shift and go to state 59
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 38
+
+    (44) Frase -> String .
+
+    Multiplicacao   reduce using rule 44 (Frase -> String .)
+    Divisao         reduce using rule 44 (Frase -> String .)
+    E               reduce using rule 44 (Frase -> String .)
+    ParRetoDir      reduce using rule 44 (Frase -> String .)
+    Soma            reduce using rule 44 (Frase -> String .)
+    Subtracao       reduce using rule 44 (Frase -> String .)
+    OU              reduce using rule 44 (Frase -> String .)
+    PontoVirgula    reduce using rule 44 (Frase -> String .)
+    ParCurvoDir     reduce using rule 44 (Frase -> String .)
+    Igual           reduce using rule 44 (Frase -> String .)
+    Diferente       reduce using rule 44 (Frase -> String .)
+    MenorIgual      reduce using rule 44 (Frase -> String .)
+    MaiorIgual      reduce using rule 44 (Frase -> String .)
+    Menor           reduce using rule 44 (Frase -> String .)
+    Maior           reduce using rule 44 (Frase -> String .)
+
+
+state 39
+
+    (45) Frase -> Lista_Palavras .
+    (47) Lista_Palavras -> Lista_Palavras . Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Multiplicacao   reduce using rule 45 (Frase -> Lista_Palavras .)
+    Divisao         reduce using rule 45 (Frase -> Lista_Palavras .)
+    E               reduce using rule 45 (Frase -> Lista_Palavras .)
+    ParRetoDir      reduce using rule 45 (Frase -> Lista_Palavras .)
+    Soma            reduce using rule 45 (Frase -> Lista_Palavras .)
+    Subtracao       reduce using rule 45 (Frase -> Lista_Palavras .)
+    OU              reduce using rule 45 (Frase -> Lista_Palavras .)
+    PontoVirgula    reduce using rule 45 (Frase -> Lista_Palavras .)
+    ParCurvoDir     reduce using rule 45 (Frase -> Lista_Palavras .)
+    Igual           reduce using rule 45 (Frase -> Lista_Palavras .)
+    Diferente       reduce using rule 45 (Frase -> Lista_Palavras .)
+    MenorIgual      reduce using rule 45 (Frase -> Lista_Palavras .)
+    MaiorIgual      reduce using rule 45 (Frase -> Lista_Palavras .)
+    Menor           reduce using rule 45 (Frase -> Lista_Palavras .)
+    Maior           reduce using rule 45 (Frase -> Lista_Palavras .)
+    Var             shift and go to state 61
+    Num             shift and go to state 41
+
+    Palavra                        shift and go to state 60
+
+state 40
+
+    (46) Lista_Palavras -> Palavra .
+
+    Var             reduce using rule 46 (Lista_Palavras -> Palavra .)
+    Num             reduce using rule 46 (Lista_Palavras -> Palavra .)
+    Multiplicacao   reduce using rule 46 (Lista_Palavras -> Palavra .)
+    Divisao         reduce using rule 46 (Lista_Palavras -> Palavra .)
+    E               reduce using rule 46 (Lista_Palavras -> Palavra .)
+    ParRetoDir      reduce using rule 46 (Lista_Palavras -> Palavra .)
+    Soma            reduce using rule 46 (Lista_Palavras -> Palavra .)
+    Subtracao       reduce using rule 46 (Lista_Palavras -> Palavra .)
+    OU              reduce using rule 46 (Lista_Palavras -> Palavra .)
+    PontoVirgula    reduce using rule 46 (Lista_Palavras -> Palavra .)
+    ParCurvoDir     reduce using rule 46 (Lista_Palavras -> Palavra .)
+    Igual           reduce using rule 46 (Lista_Palavras -> Palavra .)
+    Diferente       reduce using rule 46 (Lista_Palavras -> Palavra .)
+    MenorIgual      reduce using rule 46 (Lista_Palavras -> Palavra .)
+    MaiorIgual      reduce using rule 46 (Lista_Palavras -> Palavra .)
+    Menor           reduce using rule 46 (Lista_Palavras -> Palavra .)
+    Maior           reduce using rule 46 (Lista_Palavras -> Palavra .)
+
+
+state 41
+
+    (49) Palavra -> Num .
+
+    Var             reduce using rule 49 (Palavra -> Num .)
+    Num             reduce using rule 49 (Palavra -> Num .)
+    Multiplicacao   reduce using rule 49 (Palavra -> Num .)
+    Divisao         reduce using rule 49 (Palavra -> Num .)
+    E               reduce using rule 49 (Palavra -> Num .)
+    ParRetoDir      reduce using rule 49 (Palavra -> Num .)
+    Soma            reduce using rule 49 (Palavra -> Num .)
+    Subtracao       reduce using rule 49 (Palavra -> Num .)
+    OU              reduce using rule 49 (Palavra -> Num .)
+    PontoVirgula    reduce using rule 49 (Palavra -> Num .)
+    ParCurvoDir     reduce using rule 49 (Palavra -> Num .)
+    Igual           reduce using rule 49 (Palavra -> Num .)
+    Diferente       reduce using rule 49 (Palavra -> Num .)
+    MenorIgual      reduce using rule 49 (Palavra -> Num .)
+    MaiorIgual      reduce using rule 49 (Palavra -> Num .)
+    Menor           reduce using rule 49 (Palavra -> Num .)
+    Maior           reduce using rule 49 (Palavra -> Num .)
+
+
+state 42
+
+    (15) Atribuicao -> Var Vale Expressao . PontoVirgula
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    PontoVirgula    shift and go to state 62
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 43
+
+    (16) Atribuicao -> Var ParRetoEsq Expressao . ParRetoDir Vale Expressao PontoVirgula
+    (17) Atribuicao -> Var ParRetoEsq Expressao . ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    ParRetoDir      shift and go to state 63
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 44
+
+    (39) Escrita -> Escrever ParCurvoEsq Expressao . ParCurvoDir PontoVirgula
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    ParCurvoDir     shift and go to state 64
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 45
+
+    (40) Selecao -> Se ParCurvoEsq Condicao . ParCurvoDir Faz Instrucoes PontoVirgula
+    (41) Selecao -> Se ParCurvoEsq Condicao . ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula
+
+    ParCurvoDir     shift and go to state 65
+
+
+state 46
+
+    (18) Condicao -> Expressao .
+    (19) Condicao -> Expressao . Igual Expressao
+    (20) Condicao -> Expressao . Diferente Expressao
+    (21) Condicao -> Expressao . MenorIgual Expressao
+    (22) Condicao -> Expressao . MaiorIgual Expressao
+    (23) Condicao -> Expressao . Menor Expressao
+    (24) Condicao -> Expressao . Maior Expressao
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    ParCurvoDir     reduce using rule 18 (Condicao -> Expressao .)
+    PontoVirgula    reduce using rule 18 (Condicao -> Expressao .)
+    Igual           shift and go to state 66
+    Diferente       shift and go to state 67
+    MenorIgual      shift and go to state 68
+    MaiorIgual      shift and go to state 69
+    Menor           shift and go to state 70
+    Maior           shift and go to state 71
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 47
+
+    (42) Repeticao -> Enquanto ParCurvoEsq Condicao . ParCurvoDir Faz Instrucoes PontoVirgula
+
+    ParCurvoDir     shift and go to state 72
+
+
+state 48
+
+    (43) Repeticao -> Para ParCurvoEsq Atribuicao . PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula
+
+    PontoVirgula    shift and go to state 73
+
+
+state 49
+
+    (34) Fator -> Var ParRetoEsq . Expressao ParRetoDir
+    (35) Fator -> Var ParRetoEsq . Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 74
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 50
+
+    (6) Declaracao -> Tipo Var Expressao ParRetoDir . PontoVirgula
+
+    PontoVirgula    shift and go to state 75
+
+
+state 51
+
+    (26) Expressao -> Expressao Soma . Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Termo                          shift and go to state 76
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 52
+
+    (27) Expressao -> Expressao Subtracao . Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Termo                          shift and go to state 77
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 53
+
+    (28) Expressao -> Expressao OU . Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Termo                          shift and go to state 78
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 54
+
+    (7) Declaracao -> Tipo Var ParRetoEsq Expressao . ParRetoDir ParRetoEsq Expressao ParRetoDir PontoVirgula
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    ParRetoDir      shift and go to state 79
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 55
+
+    (30) Termo -> Termo Multiplicacao . Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Fator                          shift and go to state 80
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 56
+
+    (31) Termo -> Termo Divisao . Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Fator                          shift and go to state 81
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 57
+
+    (32) Termo -> Termo E . Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Fator                          shift and go to state 82
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 58
+
+    (36) Fator -> ParCurvoEsq Condicao . ParCurvoDir
+
+    ParCurvoDir     shift and go to state 83
+
+
+state 59
+
+    (37) Fator -> Negar Fator .
+
+    Multiplicacao   reduce using rule 37 (Fator -> Negar Fator .)
+    Divisao         reduce using rule 37 (Fator -> Negar Fator .)
+    E               reduce using rule 37 (Fator -> Negar Fator .)
+    ParRetoDir      reduce using rule 37 (Fator -> Negar Fator .)
+    Soma            reduce using rule 37 (Fator -> Negar Fator .)
+    Subtracao       reduce using rule 37 (Fator -> Negar Fator .)
+    OU              reduce using rule 37 (Fator -> Negar Fator .)
+    PontoVirgula    reduce using rule 37 (Fator -> Negar Fator .)
+    ParCurvoDir     reduce using rule 37 (Fator -> Negar Fator .)
+    Igual           reduce using rule 37 (Fator -> Negar Fator .)
+    Diferente       reduce using rule 37 (Fator -> Negar Fator .)
+    MenorIgual      reduce using rule 37 (Fator -> Negar Fator .)
+    MaiorIgual      reduce using rule 37 (Fator -> Negar Fator .)
+    Menor           reduce using rule 37 (Fator -> Negar Fator .)
+    Maior           reduce using rule 37 (Fator -> Negar Fator .)
+
+
+state 60
+
+    (47) Lista_Palavras -> Lista_Palavras Palavra .
+
+    Var             reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+    Num             reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+    Multiplicacao   reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+    Divisao         reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+    E               reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+    ParRetoDir      reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+    Soma            reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+    Subtracao       reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+    OU              reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+    PontoVirgula    reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+    ParCurvoDir     reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+    Igual           reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+    Diferente       reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+    MenorIgual      reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+    MaiorIgual      reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+    Menor           reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+    Maior           reduce using rule 47 (Lista_Palavras -> Lista_Palavras Palavra .)
+
+
+state 61
+
+    (48) Palavra -> Var .
+
+    Var             reduce using rule 48 (Palavra -> Var .)
+    Num             reduce using rule 48 (Palavra -> Var .)
+    Multiplicacao   reduce using rule 48 (Palavra -> Var .)
+    Divisao         reduce using rule 48 (Palavra -> Var .)
+    E               reduce using rule 48 (Palavra -> Var .)
+    ParRetoDir      reduce using rule 48 (Palavra -> Var .)
+    Soma            reduce using rule 48 (Palavra -> Var .)
+    Subtracao       reduce using rule 48 (Palavra -> Var .)
+    OU              reduce using rule 48 (Palavra -> Var .)
+    PontoVirgula    reduce using rule 48 (Palavra -> Var .)
+    ParCurvoDir     reduce using rule 48 (Palavra -> Var .)
+    Igual           reduce using rule 48 (Palavra -> Var .)
+    Diferente       reduce using rule 48 (Palavra -> Var .)
+    MenorIgual      reduce using rule 48 (Palavra -> Var .)
+    MaiorIgual      reduce using rule 48 (Palavra -> Var .)
+    Menor           reduce using rule 48 (Palavra -> Var .)
+    Maior           reduce using rule 48 (Palavra -> Var .)
+
+
+state 62
+
+    (15) Atribuicao -> Var Vale Expressao PontoVirgula .
+
+    Var             reduce using rule 15 (Atribuicao -> Var Vale Expressao PontoVirgula .)
+    Ler             reduce using rule 15 (Atribuicao -> Var Vale Expressao PontoVirgula .)
+    Escrever        reduce using rule 15 (Atribuicao -> Var Vale Expressao PontoVirgula .)
+    Se              reduce using rule 15 (Atribuicao -> Var Vale Expressao PontoVirgula .)
+    Enquanto        reduce using rule 15 (Atribuicao -> Var Vale Expressao PontoVirgula .)
+    Para            reduce using rule 15 (Atribuicao -> Var Vale Expressao PontoVirgula .)
+    Fim             reduce using rule 15 (Atribuicao -> Var Vale Expressao PontoVirgula .)
+    PontoVirgula    reduce using rule 15 (Atribuicao -> Var Vale Expressao PontoVirgula .)
+    Senao           reduce using rule 15 (Atribuicao -> Var Vale Expressao PontoVirgula .)
+    ParCurvoDir     reduce using rule 15 (Atribuicao -> Var Vale Expressao PontoVirgula .)
+
+
+state 63
+
+    (16) Atribuicao -> Var ParRetoEsq Expressao ParRetoDir . Vale Expressao PontoVirgula
+    (17) Atribuicao -> Var ParRetoEsq Expressao ParRetoDir . ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+
+    Vale            shift and go to state 85
+    ParRetoEsq      shift and go to state 84
+
+
+state 64
+
+    (39) Escrita -> Escrever ParCurvoEsq Expressao ParCurvoDir . PontoVirgula
+
+    PontoVirgula    shift and go to state 86
+
+
+state 65
+
+    (40) Selecao -> Se ParCurvoEsq Condicao ParCurvoDir . Faz Instrucoes PontoVirgula
+    (41) Selecao -> Se ParCurvoEsq Condicao ParCurvoDir . Faz Instrucoes Senao Instrucoes PontoVirgula
+
+    Faz             shift and go to state 87
+
+
+state 66
+
+    (19) Condicao -> Expressao Igual . Expressao
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 88
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 67
+
+    (20) Condicao -> Expressao Diferente . Expressao
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 89
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 68
+
+    (21) Condicao -> Expressao MenorIgual . Expressao
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 90
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 69
+
+    (22) Condicao -> Expressao MaiorIgual . Expressao
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 91
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 70
+
+    (23) Condicao -> Expressao Menor . Expressao
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 92
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 71
+
+    (24) Condicao -> Expressao Maior . Expressao
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 93
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 72
+
+    (42) Repeticao -> Enquanto ParCurvoEsq Condicao ParCurvoDir . Faz Instrucoes PontoVirgula
+
+    Faz             shift and go to state 94
+
+
+state 73
+
+    (43) Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula . Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula
+    (18) Condicao -> . Expressao
+    (19) Condicao -> . Expressao Igual Expressao
+    (20) Condicao -> . Expressao Diferente Expressao
+    (21) Condicao -> . Expressao MenorIgual Expressao
+    (22) Condicao -> . Expressao MaiorIgual Expressao
+    (23) Condicao -> . Expressao Menor Expressao
+    (24) Condicao -> . Expressao Maior Expressao
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Condicao                       shift and go to state 95
+    Expressao                      shift and go to state 46
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 74
+
+    (34) Fator -> Var ParRetoEsq Expressao . ParRetoDir
+    (35) Fator -> Var ParRetoEsq Expressao . ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    ParRetoDir      shift and go to state 96
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 75
+
+    (6) Declaracao -> Tipo Var Expressao ParRetoDir PontoVirgula .
+
+    Tipo            reduce using rule 6 (Declaracao -> Tipo Var Expressao ParRetoDir PontoVirgula .)
+    Var             reduce using rule 6 (Declaracao -> Tipo Var Expressao ParRetoDir PontoVirgula .)
+    Ler             reduce using rule 6 (Declaracao -> Tipo Var Expressao ParRetoDir PontoVirgula .)
+    Escrever        reduce using rule 6 (Declaracao -> Tipo Var Expressao ParRetoDir PontoVirgula .)
+    Se              reduce using rule 6 (Declaracao -> Tipo Var Expressao ParRetoDir PontoVirgula .)
+    Enquanto        reduce using rule 6 (Declaracao -> Tipo Var Expressao ParRetoDir PontoVirgula .)
+    Para            reduce using rule 6 (Declaracao -> Tipo Var Expressao ParRetoDir PontoVirgula .)
+    Fim             reduce using rule 6 (Declaracao -> Tipo Var Expressao ParRetoDir PontoVirgula .)
+
+
+state 76
+
+    (26) Expressao -> Expressao Soma Termo .
+    (30) Termo -> Termo . Multiplicacao Fator
+    (31) Termo -> Termo . Divisao Fator
+    (32) Termo -> Termo . E Fator
+
+    ParRetoDir      reduce using rule 26 (Expressao -> Expressao Soma Termo .)
+    Soma            reduce using rule 26 (Expressao -> Expressao Soma Termo .)
+    Subtracao       reduce using rule 26 (Expressao -> Expressao Soma Termo .)
+    OU              reduce using rule 26 (Expressao -> Expressao Soma Termo .)
+    PontoVirgula    reduce using rule 26 (Expressao -> Expressao Soma Termo .)
+    ParCurvoDir     reduce using rule 26 (Expressao -> Expressao Soma Termo .)
+    Igual           reduce using rule 26 (Expressao -> Expressao Soma Termo .)
+    Diferente       reduce using rule 26 (Expressao -> Expressao Soma Termo .)
+    MenorIgual      reduce using rule 26 (Expressao -> Expressao Soma Termo .)
+    MaiorIgual      reduce using rule 26 (Expressao -> Expressao Soma Termo .)
+    Menor           reduce using rule 26 (Expressao -> Expressao Soma Termo .)
+    Maior           reduce using rule 26 (Expressao -> Expressao Soma Termo .)
+    Multiplicacao   shift and go to state 55
+    Divisao         shift and go to state 56
+    E               shift and go to state 57
+
+
+state 77
+
+    (27) Expressao -> Expressao Subtracao Termo .
+    (30) Termo -> Termo . Multiplicacao Fator
+    (31) Termo -> Termo . Divisao Fator
+    (32) Termo -> Termo . E Fator
+
+    ParRetoDir      reduce using rule 27 (Expressao -> Expressao Subtracao Termo .)
+    Soma            reduce using rule 27 (Expressao -> Expressao Subtracao Termo .)
+    Subtracao       reduce using rule 27 (Expressao -> Expressao Subtracao Termo .)
+    OU              reduce using rule 27 (Expressao -> Expressao Subtracao Termo .)
+    PontoVirgula    reduce using rule 27 (Expressao -> Expressao Subtracao Termo .)
+    ParCurvoDir     reduce using rule 27 (Expressao -> Expressao Subtracao Termo .)
+    Igual           reduce using rule 27 (Expressao -> Expressao Subtracao Termo .)
+    Diferente       reduce using rule 27 (Expressao -> Expressao Subtracao Termo .)
+    MenorIgual      reduce using rule 27 (Expressao -> Expressao Subtracao Termo .)
+    MaiorIgual      reduce using rule 27 (Expressao -> Expressao Subtracao Termo .)
+    Menor           reduce using rule 27 (Expressao -> Expressao Subtracao Termo .)
+    Maior           reduce using rule 27 (Expressao -> Expressao Subtracao Termo .)
+    Multiplicacao   shift and go to state 55
+    Divisao         shift and go to state 56
+    E               shift and go to state 57
+
+
+state 78
+
+    (28) Expressao -> Expressao OU Termo .
+    (30) Termo -> Termo . Multiplicacao Fator
+    (31) Termo -> Termo . Divisao Fator
+    (32) Termo -> Termo . E Fator
+
+    ParRetoDir      reduce using rule 28 (Expressao -> Expressao OU Termo .)
+    Soma            reduce using rule 28 (Expressao -> Expressao OU Termo .)
+    Subtracao       reduce using rule 28 (Expressao -> Expressao OU Termo .)
+    OU              reduce using rule 28 (Expressao -> Expressao OU Termo .)
+    PontoVirgula    reduce using rule 28 (Expressao -> Expressao OU Termo .)
+    ParCurvoDir     reduce using rule 28 (Expressao -> Expressao OU Termo .)
+    Igual           reduce using rule 28 (Expressao -> Expressao OU Termo .)
+    Diferente       reduce using rule 28 (Expressao -> Expressao OU Termo .)
+    MenorIgual      reduce using rule 28 (Expressao -> Expressao OU Termo .)
+    MaiorIgual      reduce using rule 28 (Expressao -> Expressao OU Termo .)
+    Menor           reduce using rule 28 (Expressao -> Expressao OU Termo .)
+    Maior           reduce using rule 28 (Expressao -> Expressao OU Termo .)
+    Multiplicacao   shift and go to state 55
+    Divisao         shift and go to state 56
+    E               shift and go to state 57
+
+
+state 79
+
+    (7) Declaracao -> Tipo Var ParRetoEsq Expressao ParRetoDir . ParRetoEsq Expressao ParRetoDir PontoVirgula
+
+    ParRetoEsq      shift and go to state 97
+
+
+state 80
+
+    (30) Termo -> Termo Multiplicacao Fator .
+
+    Multiplicacao   reduce using rule 30 (Termo -> Termo Multiplicacao Fator .)
+    Divisao         reduce using rule 30 (Termo -> Termo Multiplicacao Fator .)
+    E               reduce using rule 30 (Termo -> Termo Multiplicacao Fator .)
+    ParRetoDir      reduce using rule 30 (Termo -> Termo Multiplicacao Fator .)
+    Soma            reduce using rule 30 (Termo -> Termo Multiplicacao Fator .)
+    Subtracao       reduce using rule 30 (Termo -> Termo Multiplicacao Fator .)
+    OU              reduce using rule 30 (Termo -> Termo Multiplicacao Fator .)
+    PontoVirgula    reduce using rule 30 (Termo -> Termo Multiplicacao Fator .)
+    ParCurvoDir     reduce using rule 30 (Termo -> Termo Multiplicacao Fator .)
+    Igual           reduce using rule 30 (Termo -> Termo Multiplicacao Fator .)
+    Diferente       reduce using rule 30 (Termo -> Termo Multiplicacao Fator .)
+    MenorIgual      reduce using rule 30 (Termo -> Termo Multiplicacao Fator .)
+    MaiorIgual      reduce using rule 30 (Termo -> Termo Multiplicacao Fator .)
+    Menor           reduce using rule 30 (Termo -> Termo Multiplicacao Fator .)
+    Maior           reduce using rule 30 (Termo -> Termo Multiplicacao Fator .)
+
+
+state 81
+
+    (31) Termo -> Termo Divisao Fator .
+
+    Multiplicacao   reduce using rule 31 (Termo -> Termo Divisao Fator .)
+    Divisao         reduce using rule 31 (Termo -> Termo Divisao Fator .)
+    E               reduce using rule 31 (Termo -> Termo Divisao Fator .)
+    ParRetoDir      reduce using rule 31 (Termo -> Termo Divisao Fator .)
+    Soma            reduce using rule 31 (Termo -> Termo Divisao Fator .)
+    Subtracao       reduce using rule 31 (Termo -> Termo Divisao Fator .)
+    OU              reduce using rule 31 (Termo -> Termo Divisao Fator .)
+    PontoVirgula    reduce using rule 31 (Termo -> Termo Divisao Fator .)
+    ParCurvoDir     reduce using rule 31 (Termo -> Termo Divisao Fator .)
+    Igual           reduce using rule 31 (Termo -> Termo Divisao Fator .)
+    Diferente       reduce using rule 31 (Termo -> Termo Divisao Fator .)
+    MenorIgual      reduce using rule 31 (Termo -> Termo Divisao Fator .)
+    MaiorIgual      reduce using rule 31 (Termo -> Termo Divisao Fator .)
+    Menor           reduce using rule 31 (Termo -> Termo Divisao Fator .)
+    Maior           reduce using rule 31 (Termo -> Termo Divisao Fator .)
+
+
+state 82
+
+    (32) Termo -> Termo E Fator .
+
+    Multiplicacao   reduce using rule 32 (Termo -> Termo E Fator .)
+    Divisao         reduce using rule 32 (Termo -> Termo E Fator .)
+    E               reduce using rule 32 (Termo -> Termo E Fator .)
+    ParRetoDir      reduce using rule 32 (Termo -> Termo E Fator .)
+    Soma            reduce using rule 32 (Termo -> Termo E Fator .)
+    Subtracao       reduce using rule 32 (Termo -> Termo E Fator .)
+    OU              reduce using rule 32 (Termo -> Termo E Fator .)
+    PontoVirgula    reduce using rule 32 (Termo -> Termo E Fator .)
+    ParCurvoDir     reduce using rule 32 (Termo -> Termo E Fator .)
+    Igual           reduce using rule 32 (Termo -> Termo E Fator .)
+    Diferente       reduce using rule 32 (Termo -> Termo E Fator .)
+    MenorIgual      reduce using rule 32 (Termo -> Termo E Fator .)
+    MaiorIgual      reduce using rule 32 (Termo -> Termo E Fator .)
+    Menor           reduce using rule 32 (Termo -> Termo E Fator .)
+    Maior           reduce using rule 32 (Termo -> Termo E Fator .)
+
+
+state 83
+
+    (36) Fator -> ParCurvoEsq Condicao ParCurvoDir .
+
+    Multiplicacao   reduce using rule 36 (Fator -> ParCurvoEsq Condicao ParCurvoDir .)
+    Divisao         reduce using rule 36 (Fator -> ParCurvoEsq Condicao ParCurvoDir .)
+    E               reduce using rule 36 (Fator -> ParCurvoEsq Condicao ParCurvoDir .)
+    ParRetoDir      reduce using rule 36 (Fator -> ParCurvoEsq Condicao ParCurvoDir .)
+    Soma            reduce using rule 36 (Fator -> ParCurvoEsq Condicao ParCurvoDir .)
+    Subtracao       reduce using rule 36 (Fator -> ParCurvoEsq Condicao ParCurvoDir .)
+    OU              reduce using rule 36 (Fator -> ParCurvoEsq Condicao ParCurvoDir .)
+    PontoVirgula    reduce using rule 36 (Fator -> ParCurvoEsq Condicao ParCurvoDir .)
+    ParCurvoDir     reduce using rule 36 (Fator -> ParCurvoEsq Condicao ParCurvoDir .)
+    Igual           reduce using rule 36 (Fator -> ParCurvoEsq Condicao ParCurvoDir .)
+    Diferente       reduce using rule 36 (Fator -> ParCurvoEsq Condicao ParCurvoDir .)
+    MenorIgual      reduce using rule 36 (Fator -> ParCurvoEsq Condicao ParCurvoDir .)
+    MaiorIgual      reduce using rule 36 (Fator -> ParCurvoEsq Condicao ParCurvoDir .)
+    Menor           reduce using rule 36 (Fator -> ParCurvoEsq Condicao ParCurvoDir .)
+    Maior           reduce using rule 36 (Fator -> ParCurvoEsq Condicao ParCurvoDir .)
+
+
+state 84
+
+    (17) Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq . Expressao ParRetoDir Vale Expressao PontoVirgula
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 98
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 85
+
+    (16) Atribuicao -> Var ParRetoEsq Expressao ParRetoDir Vale . Expressao PontoVirgula
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 99
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 86
+
+    (39) Escrita -> Escrever ParCurvoEsq Expressao ParCurvoDir PontoVirgula .
+
+    Var             reduce using rule 39 (Escrita -> Escrever ParCurvoEsq Expressao ParCurvoDir PontoVirgula .)
+    Ler             reduce using rule 39 (Escrita -> Escrever ParCurvoEsq Expressao ParCurvoDir PontoVirgula .)
+    Escrever        reduce using rule 39 (Escrita -> Escrever ParCurvoEsq Expressao ParCurvoDir PontoVirgula .)
+    Se              reduce using rule 39 (Escrita -> Escrever ParCurvoEsq Expressao ParCurvoDir PontoVirgula .)
+    Enquanto        reduce using rule 39 (Escrita -> Escrever ParCurvoEsq Expressao ParCurvoDir PontoVirgula .)
+    Para            reduce using rule 39 (Escrita -> Escrever ParCurvoEsq Expressao ParCurvoDir PontoVirgula .)
+    Fim             reduce using rule 39 (Escrita -> Escrever ParCurvoEsq Expressao ParCurvoDir PontoVirgula .)
+    PontoVirgula    reduce using rule 39 (Escrita -> Escrever ParCurvoEsq Expressao ParCurvoDir PontoVirgula .)
+    Senao           reduce using rule 39 (Escrita -> Escrever ParCurvoEsq Expressao ParCurvoDir PontoVirgula .)
+
+
+state 87
+
+    (40) Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz . Instrucoes PontoVirgula
+    (41) Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz . Instrucoes Senao Instrucoes PontoVirgula
+    (8) Instrucoes -> . Instrucoes Instrucao
+    (9) Instrucoes -> .
+
+    PontoVirgula    reduce using rule 9 (Instrucoes -> .)
+    Senao           reduce using rule 9 (Instrucoes -> .)
+    Var             reduce using rule 9 (Instrucoes -> .)
+    Ler             reduce using rule 9 (Instrucoes -> .)
+    Escrever        reduce using rule 9 (Instrucoes -> .)
+    Se              reduce using rule 9 (Instrucoes -> .)
+    Enquanto        reduce using rule 9 (Instrucoes -> .)
+    Para            reduce using rule 9 (Instrucoes -> .)
+
+    Instrucoes                     shift and go to state 100
+
+state 88
+
+    (19) Condicao -> Expressao Igual Expressao .
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    ParCurvoDir     reduce using rule 19 (Condicao -> Expressao Igual Expressao .)
+    PontoVirgula    reduce using rule 19 (Condicao -> Expressao Igual Expressao .)
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 89
+
+    (20) Condicao -> Expressao Diferente Expressao .
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    ParCurvoDir     reduce using rule 20 (Condicao -> Expressao Diferente Expressao .)
+    PontoVirgula    reduce using rule 20 (Condicao -> Expressao Diferente Expressao .)
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 90
+
+    (21) Condicao -> Expressao MenorIgual Expressao .
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    ParCurvoDir     reduce using rule 21 (Condicao -> Expressao MenorIgual Expressao .)
+    PontoVirgula    reduce using rule 21 (Condicao -> Expressao MenorIgual Expressao .)
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 91
+
+    (22) Condicao -> Expressao MaiorIgual Expressao .
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    ParCurvoDir     reduce using rule 22 (Condicao -> Expressao MaiorIgual Expressao .)
+    PontoVirgula    reduce using rule 22 (Condicao -> Expressao MaiorIgual Expressao .)
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 92
+
+    (23) Condicao -> Expressao Menor Expressao .
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    ParCurvoDir     reduce using rule 23 (Condicao -> Expressao Menor Expressao .)
+    PontoVirgula    reduce using rule 23 (Condicao -> Expressao Menor Expressao .)
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 93
+
+    (24) Condicao -> Expressao Maior Expressao .
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    ParCurvoDir     reduce using rule 24 (Condicao -> Expressao Maior Expressao .)
+    PontoVirgula    reduce using rule 24 (Condicao -> Expressao Maior Expressao .)
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 94
+
+    (42) Repeticao -> Enquanto ParCurvoEsq Condicao ParCurvoDir Faz . Instrucoes PontoVirgula
+    (8) Instrucoes -> . Instrucoes Instrucao
+    (9) Instrucoes -> .
+
+    PontoVirgula    reduce using rule 9 (Instrucoes -> .)
+    Var             reduce using rule 9 (Instrucoes -> .)
+    Ler             reduce using rule 9 (Instrucoes -> .)
+    Escrever        reduce using rule 9 (Instrucoes -> .)
+    Se              reduce using rule 9 (Instrucoes -> .)
+    Enquanto        reduce using rule 9 (Instrucoes -> .)
+    Para            reduce using rule 9 (Instrucoes -> .)
+
+    Instrucoes                     shift and go to state 101
+
+state 95
+
+    (43) Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao . PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula
+
+    PontoVirgula    shift and go to state 102
+
+
+state 96
+
+    (34) Fator -> Var ParRetoEsq Expressao ParRetoDir .
+    (35) Fator -> Var ParRetoEsq Expressao ParRetoDir . ParRetoEsq Expressao ParRetoDir
+
+    Multiplicacao   reduce using rule 34 (Fator -> Var ParRetoEsq Expressao ParRetoDir .)
+    Divisao         reduce using rule 34 (Fator -> Var ParRetoEsq Expressao ParRetoDir .)
+    E               reduce using rule 34 (Fator -> Var ParRetoEsq Expressao ParRetoDir .)
+    ParRetoDir      reduce using rule 34 (Fator -> Var ParRetoEsq Expressao ParRetoDir .)
+    Soma            reduce using rule 34 (Fator -> Var ParRetoEsq Expressao ParRetoDir .)
+    Subtracao       reduce using rule 34 (Fator -> Var ParRetoEsq Expressao ParRetoDir .)
+    OU              reduce using rule 34 (Fator -> Var ParRetoEsq Expressao ParRetoDir .)
+    PontoVirgula    reduce using rule 34 (Fator -> Var ParRetoEsq Expressao ParRetoDir .)
+    ParCurvoDir     reduce using rule 34 (Fator -> Var ParRetoEsq Expressao ParRetoDir .)
+    Igual           reduce using rule 34 (Fator -> Var ParRetoEsq Expressao ParRetoDir .)
+    Diferente       reduce using rule 34 (Fator -> Var ParRetoEsq Expressao ParRetoDir .)
+    MenorIgual      reduce using rule 34 (Fator -> Var ParRetoEsq Expressao ParRetoDir .)
+    MaiorIgual      reduce using rule 34 (Fator -> Var ParRetoEsq Expressao ParRetoDir .)
+    Menor           reduce using rule 34 (Fator -> Var ParRetoEsq Expressao ParRetoDir .)
+    Maior           reduce using rule 34 (Fator -> Var ParRetoEsq Expressao ParRetoDir .)
+    ParRetoEsq      shift and go to state 103
+
+
+state 97
+
+    (7) Declaracao -> Tipo Var ParRetoEsq Expressao ParRetoDir ParRetoEsq . Expressao ParRetoDir PontoVirgula
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 104
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 98
+
+    (17) Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao . ParRetoDir Vale Expressao PontoVirgula
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    ParRetoDir      shift and go to state 105
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 99
+
+    (16) Atribuicao -> Var ParRetoEsq Expressao ParRetoDir Vale Expressao . PontoVirgula
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    PontoVirgula    shift and go to state 106
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 100
+
+    (40) Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes . PontoVirgula
+    (41) Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes . Senao Instrucoes PontoVirgula
+    (8) Instrucoes -> Instrucoes . Instrucao
+    (10) Instrucao -> . Atribuicao
+    (11) Instrucao -> . Leitura
+    (12) Instrucao -> . Escrita
+    (13) Instrucao -> . Selecao
+    (14) Instrucao -> . Repeticao
+    (15) Atribuicao -> . Var Vale Expressao PontoVirgula
+    (16) Atribuicao -> . Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+    (17) Atribuicao -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+    (38) Leitura -> . Ler PontoVirgula
+    (39) Escrita -> . Escrever ParCurvoEsq Expressao ParCurvoDir PontoVirgula
+    (40) Selecao -> . Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula
+    (41) Selecao -> . Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula
+    (42) Repeticao -> . Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula
+    (43) Repeticao -> . Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula
+
+    PontoVirgula    shift and go to state 107
+    Senao           shift and go to state 108
+    Var             shift and go to state 15
+    Ler             shift and go to state 16
+    Escrever        shift and go to state 17
+    Se              shift and go to state 18
+    Enquanto        shift and go to state 19
+    Para            shift and go to state 20
+
+    Instrucao                      shift and go to state 9
+    Atribuicao                     shift and go to state 10
+    Leitura                        shift and go to state 11
+    Escrita                        shift and go to state 12
+    Selecao                        shift and go to state 13
+    Repeticao                      shift and go to state 14
+
+state 101
+
+    (42) Repeticao -> Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes . PontoVirgula
+    (8) Instrucoes -> Instrucoes . Instrucao
+    (10) Instrucao -> . Atribuicao
+    (11) Instrucao -> . Leitura
+    (12) Instrucao -> . Escrita
+    (13) Instrucao -> . Selecao
+    (14) Instrucao -> . Repeticao
+    (15) Atribuicao -> . Var Vale Expressao PontoVirgula
+    (16) Atribuicao -> . Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+    (17) Atribuicao -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+    (38) Leitura -> . Ler PontoVirgula
+    (39) Escrita -> . Escrever ParCurvoEsq Expressao ParCurvoDir PontoVirgula
+    (40) Selecao -> . Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula
+    (41) Selecao -> . Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula
+    (42) Repeticao -> . Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula
+    (43) Repeticao -> . Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula
+
+    PontoVirgula    shift and go to state 109
+    Var             shift and go to state 15
+    Ler             shift and go to state 16
+    Escrever        shift and go to state 17
+    Se              shift and go to state 18
+    Enquanto        shift and go to state 19
+    Para            shift and go to state 20
+
+    Instrucao                      shift and go to state 9
+    Atribuicao                     shift and go to state 10
+    Leitura                        shift and go to state 11
+    Escrita                        shift and go to state 12
+    Selecao                        shift and go to state 13
+    Repeticao                      shift and go to state 14
+
+state 102
+
+    (43) Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula . Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula
+    (15) Atribuicao -> . Var Vale Expressao PontoVirgula
+    (16) Atribuicao -> . Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+    (17) Atribuicao -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+
+    Var             shift and go to state 15
+
+    Atribuicao                     shift and go to state 110
+
+state 103
+
+    (35) Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq . Expressao ParRetoDir
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 111
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 104
+
+    (7) Declaracao -> Tipo Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao . ParRetoDir PontoVirgula
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    ParRetoDir      shift and go to state 112
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 105
+
+    (17) Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir . Vale Expressao PontoVirgula
+
+    Vale            shift and go to state 113
+
+
+state 106
+
+    (16) Atribuicao -> Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .
+
+    Var             reduce using rule 16 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    Ler             reduce using rule 16 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    Escrever        reduce using rule 16 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    Se              reduce using rule 16 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    Enquanto        reduce using rule 16 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    Para            reduce using rule 16 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    Fim             reduce using rule 16 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    PontoVirgula    reduce using rule 16 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    Senao           reduce using rule 16 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    ParCurvoDir     reduce using rule 16 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+
+
+state 107
+
+    (40) Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .
+
+    Var             reduce using rule 40 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Ler             reduce using rule 40 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Escrever        reduce using rule 40 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Se              reduce using rule 40 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Enquanto        reduce using rule 40 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Para            reduce using rule 40 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Fim             reduce using rule 40 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    PontoVirgula    reduce using rule 40 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Senao           reduce using rule 40 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+
+
+state 108
+
+    (41) Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao . Instrucoes PontoVirgula
+    (8) Instrucoes -> . Instrucoes Instrucao
+    (9) Instrucoes -> .
+
+    PontoVirgula    reduce using rule 9 (Instrucoes -> .)
+    Var             reduce using rule 9 (Instrucoes -> .)
+    Ler             reduce using rule 9 (Instrucoes -> .)
+    Escrever        reduce using rule 9 (Instrucoes -> .)
+    Se              reduce using rule 9 (Instrucoes -> .)
+    Enquanto        reduce using rule 9 (Instrucoes -> .)
+    Para            reduce using rule 9 (Instrucoes -> .)
+
+    Instrucoes                     shift and go to state 114
+
+state 109
+
+    (42) Repeticao -> Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .
+
+    Var             reduce using rule 42 (Repeticao -> Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Ler             reduce using rule 42 (Repeticao -> Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Escrever        reduce using rule 42 (Repeticao -> Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Se              reduce using rule 42 (Repeticao -> Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Enquanto        reduce using rule 42 (Repeticao -> Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Para            reduce using rule 42 (Repeticao -> Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Fim             reduce using rule 42 (Repeticao -> Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    PontoVirgula    reduce using rule 42 (Repeticao -> Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Senao           reduce using rule 42 (Repeticao -> Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+
+
+state 110
+
+    (43) Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao . ParCurvoDir Faz Instrucoes PontoVirgula
+
+    ParCurvoDir     shift and go to state 115
+
+
+state 111
+
+    (35) Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao . ParRetoDir
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    ParRetoDir      shift and go to state 116
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 112
+
+    (7) Declaracao -> Tipo Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir . PontoVirgula
+
+    PontoVirgula    shift and go to state 117
+
+
+state 113
+
+    (17) Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale . Expressao PontoVirgula
+    (25) Expressao -> . Termo
+    (26) Expressao -> . Expressao Soma Termo
+    (27) Expressao -> . Expressao Subtracao Termo
+    (28) Expressao -> . Expressao OU Termo
+    (29) Termo -> . Fator
+    (30) Termo -> . Termo Multiplicacao Fator
+    (31) Termo -> . Termo Divisao Fator
+    (32) Termo -> . Termo E Fator
+    (33) Fator -> . Frase
+    (34) Fator -> . Var ParRetoEsq Expressao ParRetoDir
+    (35) Fator -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir
+    (36) Fator -> . ParCurvoEsq Condicao ParCurvoDir
+    (37) Fator -> . Negar Fator
+    (44) Frase -> . String
+    (45) Frase -> . Lista_Palavras
+    (46) Lista_Palavras -> . Palavra
+    (47) Lista_Palavras -> . Lista_Palavras Palavra
+    (48) Palavra -> . Var
+    (49) Palavra -> . Num
+
+    Var             shift and go to state 29
+    ParCurvoEsq     shift and go to state 36
+    Negar           shift and go to state 37
+    String          shift and go to state 38
+    Num             shift and go to state 41
+
+    Expressao                      shift and go to state 118
+    Termo                          shift and go to state 33
+    Fator                          shift and go to state 34
+    Frase                          shift and go to state 35
+    Lista_Palavras                 shift and go to state 39
+    Palavra                        shift and go to state 40
+
+state 114
+
+    (41) Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes . PontoVirgula
+    (8) Instrucoes -> Instrucoes . Instrucao
+    (10) Instrucao -> . Atribuicao
+    (11) Instrucao -> . Leitura
+    (12) Instrucao -> . Escrita
+    (13) Instrucao -> . Selecao
+    (14) Instrucao -> . Repeticao
+    (15) Atribuicao -> . Var Vale Expressao PontoVirgula
+    (16) Atribuicao -> . Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+    (17) Atribuicao -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+    (38) Leitura -> . Ler PontoVirgula
+    (39) Escrita -> . Escrever ParCurvoEsq Expressao ParCurvoDir PontoVirgula
+    (40) Selecao -> . Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula
+    (41) Selecao -> . Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula
+    (42) Repeticao -> . Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula
+    (43) Repeticao -> . Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula
+
+    PontoVirgula    shift and go to state 119
+    Var             shift and go to state 15
+    Ler             shift and go to state 16
+    Escrever        shift and go to state 17
+    Se              shift and go to state 18
+    Enquanto        shift and go to state 19
+    Para            shift and go to state 20
+
+    Instrucao                      shift and go to state 9
+    Atribuicao                     shift and go to state 10
+    Leitura                        shift and go to state 11
+    Escrita                        shift and go to state 12
+    Selecao                        shift and go to state 13
+    Repeticao                      shift and go to state 14
+
+state 115
+
+    (43) Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir . Faz Instrucoes PontoVirgula
+
+    Faz             shift and go to state 120
+
+
+state 116
+
+    (35) Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir .
+
+    Multiplicacao   reduce using rule 35 (Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir .)
+    Divisao         reduce using rule 35 (Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir .)
+    E               reduce using rule 35 (Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir .)
+    ParRetoDir      reduce using rule 35 (Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir .)
+    Soma            reduce using rule 35 (Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir .)
+    Subtracao       reduce using rule 35 (Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir .)
+    OU              reduce using rule 35 (Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir .)
+    PontoVirgula    reduce using rule 35 (Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir .)
+    ParCurvoDir     reduce using rule 35 (Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir .)
+    Igual           reduce using rule 35 (Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir .)
+    Diferente       reduce using rule 35 (Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir .)
+    MenorIgual      reduce using rule 35 (Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir .)
+    MaiorIgual      reduce using rule 35 (Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir .)
+    Menor           reduce using rule 35 (Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir .)
+    Maior           reduce using rule 35 (Fator -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir .)
+
+
+state 117
+
+    (7) Declaracao -> Tipo Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir PontoVirgula .
+
+    Tipo            reduce using rule 7 (Declaracao -> Tipo Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir PontoVirgula .)
+    Var             reduce using rule 7 (Declaracao -> Tipo Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir PontoVirgula .)
+    Ler             reduce using rule 7 (Declaracao -> Tipo Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir PontoVirgula .)
+    Escrever        reduce using rule 7 (Declaracao -> Tipo Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir PontoVirgula .)
+    Se              reduce using rule 7 (Declaracao -> Tipo Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir PontoVirgula .)
+    Enquanto        reduce using rule 7 (Declaracao -> Tipo Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir PontoVirgula .)
+    Para            reduce using rule 7 (Declaracao -> Tipo Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir PontoVirgula .)
+    Fim             reduce using rule 7 (Declaracao -> Tipo Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir PontoVirgula .)
+
+
+state 118
+
+    (17) Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao . PontoVirgula
+    (26) Expressao -> Expressao . Soma Termo
+    (27) Expressao -> Expressao . Subtracao Termo
+    (28) Expressao -> Expressao . OU Termo
+
+    PontoVirgula    shift and go to state 121
+    Soma            shift and go to state 51
+    Subtracao       shift and go to state 52
+    OU              shift and go to state 53
+
+
+state 119
+
+    (41) Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula .
+
+    Var             reduce using rule 41 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula .)
+    Ler             reduce using rule 41 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula .)
+    Escrever        reduce using rule 41 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula .)
+    Se              reduce using rule 41 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula .)
+    Enquanto        reduce using rule 41 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula .)
+    Para            reduce using rule 41 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula .)
+    Fim             reduce using rule 41 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula .)
+    PontoVirgula    reduce using rule 41 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula .)
+    Senao           reduce using rule 41 (Selecao -> Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula .)
+
+
+state 120
+
+    (43) Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz . Instrucoes PontoVirgula
+    (8) Instrucoes -> . Instrucoes Instrucao
+    (9) Instrucoes -> .
+
+    PontoVirgula    reduce using rule 9 (Instrucoes -> .)
+    Var             reduce using rule 9 (Instrucoes -> .)
+    Ler             reduce using rule 9 (Instrucoes -> .)
+    Escrever        reduce using rule 9 (Instrucoes -> .)
+    Se              reduce using rule 9 (Instrucoes -> .)
+    Enquanto        reduce using rule 9 (Instrucoes -> .)
+    Para            reduce using rule 9 (Instrucoes -> .)
+
+    Instrucoes                     shift and go to state 122
+
+state 121
+
+    (17) Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .
+
+    Var             reduce using rule 17 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    Ler             reduce using rule 17 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    Escrever        reduce using rule 17 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    Se              reduce using rule 17 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    Enquanto        reduce using rule 17 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    Para            reduce using rule 17 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    Fim             reduce using rule 17 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    PontoVirgula    reduce using rule 17 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    Senao           reduce using rule 17 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+    ParCurvoDir     reduce using rule 17 (Atribuicao -> Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula .)
+
+
+state 122
+
+    (43) Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes . PontoVirgula
+    (8) Instrucoes -> Instrucoes . Instrucao
+    (10) Instrucao -> . Atribuicao
+    (11) Instrucao -> . Leitura
+    (12) Instrucao -> . Escrita
+    (13) Instrucao -> . Selecao
+    (14) Instrucao -> . Repeticao
+    (15) Atribuicao -> . Var Vale Expressao PontoVirgula
+    (16) Atribuicao -> . Var ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+    (17) Atribuicao -> . Var ParRetoEsq Expressao ParRetoDir ParRetoEsq Expressao ParRetoDir Vale Expressao PontoVirgula
+    (38) Leitura -> . Ler PontoVirgula
+    (39) Escrita -> . Escrever ParCurvoEsq Expressao ParCurvoDir PontoVirgula
+    (40) Selecao -> . Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula
+    (41) Selecao -> . Se ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes Senao Instrucoes PontoVirgula
+    (42) Repeticao -> . Enquanto ParCurvoEsq Condicao ParCurvoDir Faz Instrucoes PontoVirgula
+    (43) Repeticao -> . Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula
+
+    PontoVirgula    shift and go to state 123
+    Var             shift and go to state 15
+    Ler             shift and go to state 16
+    Escrever        shift and go to state 17
+    Se              shift and go to state 18
+    Enquanto        shift and go to state 19
+    Para            shift and go to state 20
+
+    Atribuicao                     shift and go to state 10
+    Instrucao                      shift and go to state 9
+    Leitura                        shift and go to state 11
+    Escrita                        shift and go to state 12
+    Selecao                        shift and go to state 13
+    Repeticao                      shift and go to state 14
+
+state 123
+
+    (43) Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula .
+
+    Var             reduce using rule 43 (Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Ler             reduce using rule 43 (Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Escrever        reduce using rule 43 (Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Se              reduce using rule 43 (Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Enquanto        reduce using rule 43 (Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Para            reduce using rule 43 (Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Fim             reduce using rule 43 (Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    PontoVirgula    reduce using rule 43 (Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+    Senao           reduce using rule 43 (Repeticao -> Para ParCurvoEsq Atribuicao PontoVirgula Condicao PontoVirgula Atribuicao ParCurvoDir Faz Instrucoes PontoVirgula .)
+
